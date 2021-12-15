@@ -32,8 +32,7 @@ class MainScreenInteractor: MainScreenInteractorProtocol {
                 self.presenter?.setRandomUserData(data: response!.results[0])
             }
             else {
-                print("nil")
-//                self.presenter?.uploadDataWithStorage() error
+                self.presenter?.showError(message: "Suddenly cant fetch user data")
             }
         }
     }
@@ -47,8 +46,7 @@ class MainScreenInteractor: MainScreenInteractorProtocol {
                 self.presenter?.setImage(image: UIImage(data: data!)!)
             }
             else {
-                print("nil")
-//                self.presenter?.uploadDataWithStorage() error
+                self.presenter?.showError(message: "Suddenly cant fetch user photo")
             }
         }
 

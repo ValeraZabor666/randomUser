@@ -14,6 +14,7 @@ protocol MainScreenViewControllerProtocol {
     
     func updateUserData(data: RandomUser)
     func updateUserImage(photo: UIImage)
+    func displayError(message: String)
 }
 
 class MainScreenViewController: UIViewController, MainScreenViewControllerProtocol {
@@ -78,6 +79,7 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
         nameLabel.layer.cornerRadius = 7
         nameLabel.clipsToBounds = true
         nameLabel.textAlignment = .left
+        nameLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(nameLabel)
         nameLabelConstraints()
     }
@@ -88,6 +90,7 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
         locationLabel.layer.cornerRadius = 7
         locationLabel.clipsToBounds = true
         locationLabel.textAlignment = .left
+        locationLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(locationLabel)
         locationLabelConstraints()
     }
@@ -98,6 +101,7 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
         emailLabel.layer.cornerRadius = 7
         emailLabel.clipsToBounds = true
         emailLabel.textAlignment = .left
+        emailLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(emailLabel)
         emailLabelConstraints()
     }
@@ -108,6 +112,7 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
         phoneLabel.layer.cornerRadius = 7
         phoneLabel.clipsToBounds = true
         phoneLabel.textAlignment = .left
+        phoneLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(phoneLabel)
         phoneLabelConstraints()
     }
@@ -118,6 +123,7 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
         cellLabel.layer.cornerRadius = 7
         cellLabel.clipsToBounds = true
         cellLabel.textAlignment = .left
+        cellLabel.adjustsFontSizeToFitWidth = true
         view.addSubview(cellLabel)
         cellLabelConstraints()
     }
@@ -186,5 +192,11 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
     
     @objc func didTapAdd() {
         getRandomUser()
+    }
+    
+    func displayError(message: String) {
+        let alert = UIAlertController(title: "Error", message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 }

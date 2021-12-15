@@ -17,6 +17,7 @@ protocol MainScreenPresenterProtocol {
     func setRandomUserData(data: RandomUser)
     func getImage(url: String)
     func setImage(image: UIImage)
+    func showError(message: String)
 }
 
 class MainScreenPresenter: MainScreenPresenterProtocol {
@@ -39,5 +40,9 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
     
     func setImage(image: UIImage) {
         view?.updateUserImage(photo: image)
+    }
+    
+    func showError(message: String) {
+        view?.displayError(message: message)
     }
 }
