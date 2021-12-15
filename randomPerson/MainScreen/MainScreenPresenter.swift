@@ -38,6 +38,6 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
     }
     
     func setImage(image: UIImage) {
-        
+        view?.updateUserImage(photo: image)
     }
 }

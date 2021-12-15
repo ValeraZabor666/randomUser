@@ -13,6 +13,7 @@ protocol MainScreenViewControllerProtocol {
     var presenter: MainScreenPresenterProtocol? { get set }
     
     func updateUserData(data: RandomUser)
+    func updateUserImage(photo: UIImage)
 }
 
 class MainScreenViewController: UIViewController, MainScreenViewControllerProtocol {
@@ -41,6 +42,10 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
         phoneLabel.text = "Phone: \(data.phone)"
         cellLabel.text = "Cell: \(data.cell)"
         presenter?.getImage(url: data.picture.medium)
+    }
+    
+    func updateUserImage(photo: UIImage) {
+        image.image = photo
     }
     
     private func getRandomUser() {

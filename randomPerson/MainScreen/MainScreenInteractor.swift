@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MainScreenInteractorProtocol {
     var presenter: MainScreenPresenterProtocol? { get set }
@@ -37,6 +38,22 @@ class MainScreenInteractor: MainScreenInteractorProtocol {
         }
     }
     
+    func fetchImage(url: String) {
+        let url = URL(string: url)
+
+        getJSON(url: url!) { (data, error) in
+            
+            if data != nil {
+                self.presenter?.setImage(image: UIImage(data: data!)!)
+            }
+            else {
+                print("nil")
+//                self.presenter?.uploadDataWithStorage() error
+            }
+        }
+
+    }
+    
     private func getJSON(url: URL, completion: @escaping (Data?, Error?) -> Void) {
 
         let request = URLRequest(url: url)
@@ -51,9 +68,5 @@ class MainScreenInteractor: MainScreenInteractorProtocol {
                 completion(data, error)
             }
         })
-    }
-    
-    func fetchImage(url: String) {
-        
     }
 }
