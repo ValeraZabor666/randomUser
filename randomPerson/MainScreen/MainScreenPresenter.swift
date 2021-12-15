@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MainScreenPresenterProtocol {
     var router: MainScreenRouterProtocol? { get set }
@@ -13,6 +14,9 @@ protocol MainScreenPresenterProtocol {
     var view: MainScreenViewControllerProtocol? { get set }
     
     func getRandomUserData()
+    func setRandomUserData(data: RandomUser)
+    func getImage(url: String)
+    func setImage(image: UIImage)
 }
 
 class MainScreenPresenter: MainScreenPresenterProtocol {
@@ -23,5 +27,17 @@ class MainScreenPresenter: MainScreenPresenterProtocol {
     
     func getRandomUserData() {
         interactor?.fetchUserData()
+    }
+    
+    func setRandomUserData(data: RandomUser) {
+        view?.updateUserData(data: data)
+    }
+    
+    func getImage(url: String) {
+        interactor?.fetchImage(url: url)
+    }
+    
+    func setImage(image: UIImage) {
+        
     }
 }

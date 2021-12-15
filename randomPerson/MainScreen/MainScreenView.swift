@@ -11,6 +11,8 @@ import SnapKit
 
 protocol MainScreenViewControllerProtocol {
     var presenter: MainScreenPresenterProtocol? { get set }
+    
+    func updateUserData(data: RandomUser)
 }
 
 class MainScreenViewController: UIViewController, MainScreenViewControllerProtocol {
@@ -30,6 +32,15 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
         
         getRandomUser()
         setSubviews()
+    }
+    
+    func updateUserData(data: RandomUser) {
+        nameLabel.text = "Name: \(data.name.first) \(data.name.title) \(data.name.last) (\(data.gender))"
+        locationLabel.text = "Loc: \(data.location.city), \(data.location.country), \(data.location.postcode)"
+        emailLabel.text = "Email: \(data.email)"
+        phoneLabel.text = "Phone: \(data.phone)"
+        cellLabel.text = "Cell: \(data.cell)"
+        presenter?.getImage(url: data.picture.medium)
     }
     
     private func getRandomUser() {

@@ -11,6 +11,7 @@ protocol MainScreenInteractorProtocol {
     var presenter: MainScreenPresenterProtocol? { get set }
 
     func fetchUserData()
+    func fetchImage(url: String)
 }
 
 class MainScreenInteractor: MainScreenInteractorProtocol {
@@ -27,9 +28,7 @@ class MainScreenInteractor: MainScreenInteractorProtocol {
             
             let response = try? decoder.decode(ResponseAPI.self, from: data!)
             if response != nil {
-                print("*** \(response?.results[0].gender) ***")
-//                print("*** \(response?.info.seed) ***")
-//                self.presenter?.uploadData(data: response!) upload data
+                self.presenter?.setRandomUserData(data: response!.results[0])
             }
             else {
                 print("nil")
@@ -52,5 +51,9 @@ class MainScreenInteractor: MainScreenInteractorProtocol {
                 completion(data, error)
             }
         })
+    }
+    
+    func fetchImage(url: String) {
+        
     }
 }
