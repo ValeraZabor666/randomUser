@@ -33,6 +33,7 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
         
         getRandomUser()
         setSubviews()
+        setNavigationParams()
     }
     
     func updateUserData(data: RandomUser) {
@@ -173,5 +174,17 @@ class MainScreenViewController: UIViewController, MainScreenViewControllerProtoc
             maker.top.equalTo(phoneLabel).inset(50)
             maker.left.right.equalToSuperview().inset(20)
         }
+    }
+    
+    private func setNavigationParams() {
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Update",
+            style: .plain,
+            target: self,
+            action: #selector(didTapAdd))
+    }
+    
+    @objc func didTapAdd() {
+        getRandomUser()
     }
 }
